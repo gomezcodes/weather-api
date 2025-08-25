@@ -19,7 +19,9 @@ public class VisualCrossingService {
         this.restTemplate = restTemplate;
     }
 
-    public String getWeather() {
-        return restTemplate.getForObject(apiUrl, String.class);
+    public String getWeather(String zipCode) {
+        String finalUrl = apiUrl.replace("{zipCode}", zipCode);
+        log.info("El url final es: {}", finalUrl);
+        return restTemplate.getForObject(finalUrl, String.class);
     }
 }
